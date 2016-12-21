@@ -1,2 +1,2 @@
-# gavyaggarwal.com-2.0
-My new personal website
+# gavyaggarwal.com
+Coming Soon
