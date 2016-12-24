@@ -168,7 +168,7 @@ body
   #projects
     box-sizing border-box
     width 80%
-    padding 10px
+    padding 10px 0px
     color rgba(238, 238, 238, 0.7)
     @media (max-width: 600px)
       width 100%
@@ -179,7 +179,15 @@ body
       margin 0
       padding 0
     div#subheader
-      min-width 375px
+      min-width 355px
+      margin 0px auto
+      padding 0px 10px
+      @media (min-width: 824px) and (max-width: 1223px)
+        width 580px
+      @media (min-width: 1224px) and (max-width: 1623px)
+        width 880px
+      @media (min-width: 1624px) and (max-width: 2023px)
+        width 1180px
       span#filter
         font-size 0.8em
         float right
@@ -255,7 +263,6 @@ body
           h3, p, a
             opacity 1
   #skills
-    top -200px
     height 600px
     div#legend
       position absolute
@@ -294,7 +301,6 @@ body
           left 0
           top 0
           padding 3px 3px 3px 10px
-          //width 100px
           height 25px
           white-space nowrap
           transform translateY(100px) rotate(-90deg)
@@ -313,7 +319,8 @@ body
               if num >= 39 and num <= 48
                 background rgba(156, 39, 176, 1)
   #contact
-    padding 10px
+    width 100%
+    padding 10px 0px
     text-align center
     div#form
       margin 105px auto
@@ -328,7 +335,8 @@ body
         background rgba(238, 238, 238, 0.2)
       &.selected
         cursor auto
-        width 400px
+        width calc(100% - 20px)
+        max-width 400px
         height 200px
         margin 30px auto
         background rgba(238, 238, 238, 0.2)
