@@ -134,11 +134,7 @@ function configureForm() {
 function scrollToEvent() {
     this.controller.scrollTo(this.scene);
 }
-$(document).ready(function () {
-    configureName();
-    configureEvents();
-    configureProjects();
-    configureForm();
+function configureScrolling() {
     var controller = new ScrollMagic.Controller();
     controller.scrollTo(function (newScrollPos) {
         $("html, body").animate({ scrollTop: newScrollPos });
@@ -275,7 +271,7 @@ $(document).ready(function () {
     })
         .setTween(contactFadeIn)
         .addTo(controller);
-});
+}
 console.log("Hey there. What brings you with to the console? Are you having issues with my website. You can send me a message by typing tellGavy(\"[Your message]\") and hitting enter. Alternatively, you can include your email by using tellGavy([message]\", \"[email]\") so that I can get back to you.");
 function tellGavy(message, email) {
     sendMail({
@@ -289,3 +285,9 @@ function tellGavy(message, email) {
         }
     });
 }
+$(document).ready(function () {
+    configureName();
+    configureEvents();
+    configureProjects();
+    configureForm();
+});

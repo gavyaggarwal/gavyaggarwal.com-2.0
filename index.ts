@@ -164,12 +164,7 @@ function scrollToEvent() : void {
   this.controller.scrollTo(this.scene);
 }
 
-$(document).ready(function() {
-  configureName();
-  configureEvents();
-  configureProjects();
-  configureForm();
-
+function configureScrolling() {
   var controller = new ScrollMagic.Controller();
 
   controller.scrollTo(function (newScrollPos) {
@@ -177,9 +172,9 @@ $(document).ready(function() {
   });
 
   var nameFade = TweenMax.fromTo("#name", 1,
-										{opacity: 1},
-										{opacity: 0}
-									);
+                    {opacity: 1},
+                    {opacity: 0}
+                  );
 
   new ScrollMagic.Scene({
       offset: 0,
@@ -199,9 +194,9 @@ $(document).ready(function() {
 
 
   var timelineScroll = TweenMax.fromTo("#timeline", 1,
-										{top: "+=0"},
-										{top: "-=300"}
-									);
+                    {top: "+=0"},
+                    {top: "-=300"}
+                  );
 
   new ScrollMagic.Scene({
       offset: 250,
@@ -249,19 +244,19 @@ $(document).ready(function() {
 
 
   var projectsScrollIn = TweenMax.fromTo("#projects", 1,
-										{top: "+=0"},
-										{top: "-=200"}
-									);
+                    {top: "+=0"},
+                    {top: "-=200"}
+                  );
 
   var projectsFadeIn = TweenMax.fromTo("#projects", 1,
-										{opacity: 0},
-										{opacity: 1}
-									);
+                    {opacity: 0},
+                    {opacity: 1}
+                  );
 
   var projectsFadeOut = TweenMax.fromTo("#projects", 1,
-										{opacity: 1},
-										{opacity: 0}
-									);
+                    {opacity: 1},
+                    {opacity: 0}
+                  );
 
   new ScrollMagic.Scene({
       triggerElement: "#timeline",
@@ -386,7 +381,7 @@ $(document).ready(function() {
     })
     .setTween(contactFadeIn)
     .addTo(controller);
-});
+}
 
 console.log(`Hey there. What brings you with to the console? Are you having issues with my website. You can send me a message by typing tellGavy("[Your message]") and hitting enter. Alternatively, you can include your email by using tellGavy([message]", "[email]") so that I can get back to you.`);
 
@@ -402,3 +397,11 @@ function tellGavy(message, email) {
     }
   })
 }
+
+$(document).ready(function() {
+  configureName();
+  configureEvents();
+  configureProjects();
+  configureForm();
+  //configureScrolling();
+});
