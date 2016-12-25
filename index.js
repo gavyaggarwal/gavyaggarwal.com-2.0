@@ -1,5 +1,5 @@
-var events;
-events = [
+var events2;
+events2 = [
     ["August 1996", "life", "Out of the Womb", "I came out as a chubby, summer baby at the ripe, young age of 0. However, don't let looks deceive you. I was a devious child, and I hope the world was ready for me."],
     ["August 2001", "academic", "Off to School", "With a pair of freshly sharpened pencils and a shiny, new eraser, I was off to Kindergarten to learn all the wonderful things school had to offer. Unfortunately, the only thing I learned that day was that American school lunches were far from what I imagined."],
     ["June 2002", "life", "Look Ma! No Training Wheels", "After several screams, crashes, and scraped knees, I finally earned my wheels. I could now be where I wanted, when I wanted and had to report to nobody... At least until I was tired and hungry after biking all day and needed to come home for dinner."],
@@ -28,14 +28,6 @@ function configureName() {
         }, 600);
     }, 5000);
 }
-function configureEvents() {
-    var dates = $("#dates");
-    for (var _i = 0, events_1 = events; _i < events_1.length; _i++) {
-        var event_1 = events_1[_i];
-        $(dates).append("<li class=\"" + event_1[1] + "\">" + event_1[0] + "</li>");
-    }
-    $("#timeline").height(180 * events.length);
-}
 function getEventTypeString(type) {
     switch (type) {
         case "life":
@@ -45,11 +37,6 @@ function getEventTypeString(type) {
         case "academic":
             return "Academic Event";
     }
-}
-function updateEvent(e) {
-    var event = events[this.i];
-    var type = getEventTypeString(event[1]);
-    $("#event").html("     <h4>" + type + "</h4>     <h2 class=\"" + event[1] + "\">" + event[2] + "</h2>     <span>" + event[3] + "</span>   ");
 }
 function configureProjects() {
     var grid = $('#grid').isotope({
@@ -139,55 +126,40 @@ function configureScrolling() {
     controller.scrollTo(function (newScrollPos) {
         $("html, body").animate({ scrollTop: newScrollPos });
     });
-    var nameFade = TweenMax.fromTo("#name", 1, { opacity: 1 }, { opacity: 0 });
+    var nameFade = new TweenMax("#name", 1, {
+        opacity: 0
+    });
     new ScrollMagic.Scene({
-        offset: 0,
         duration: 300
     })
         .setTween(nameFade)
         .setPin("#name")
         .addTo(controller);
+    var timelineScroll = new TweenMax("#timeline", 1, {
+        top: -300
+    });
     new ScrollMagic.Scene({
         offset: 150
     })
         .setClassToggle("#background", "blur")
         .addTo(controller);
-    var timelineScroll = TweenMax.fromTo("#timeline", 1, { top: "+=0" }, { top: "-=300" });
     new ScrollMagic.Scene({
         offset: 250,
         duration: 50
     })
         .setTween(timelineScroll)
         .addTo(controller);
-    new ScrollMagic.Scene({
-        triggerElement: "#line",
-        offset: 100,
-        duration: 180 * events.length
-    })
-        .setPin("#event")
-        .addTo(controller);
+    var events = $("#timeline li");
     for (var i = 0; i < events.length; i++) {
         new ScrollMagic.Scene({
-            triggerElement: "#line",
-            offset: 180 * i + 100,
-            duration: 120
+            triggerElement: events[i],
+            offset: -120,
+            duration: 60
         })
-            .setPin("#line")
-            .setClassToggle("#dates li:nth-child(" + (i + 1) + ")", "selected")
-            .on("enter", updateEvent.bind({ i: i }))
+            .setClassToggle(events[i], "selected")
             .addTo(controller);
-        var scene = new ScrollMagic.Scene({
-            triggerElement: "#line",
-            offset: 180 * i + 100,
-            duration: 120
-        })
-            .setClassToggle("#event", "visible")
-            .addTo(controller);
-        $("#dates li:nth-child(" + (i + 1) + ")").click(scrollToEvent.bind({
-            controller: controller,
-            scene: scene
-        }));
     }
+    return;
     var projectsScrollIn = TweenMax.fromTo("#projects", 1, { top: "+=0" }, { top: "-=200" });
     var projectsFadeIn = TweenMax.fromTo("#projects", 1, { opacity: 0 }, { opacity: 1 });
     var projectsFadeOut = TweenMax.fromTo("#projects", 1, { opacity: 1 }, { opacity: 0 });
@@ -289,4 +261,5 @@ $(document).ready(function () {
     configureName();
     configureProjects();
     configureForm();
+    configureScrolling();
 });
