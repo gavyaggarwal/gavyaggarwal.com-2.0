@@ -287,7 +287,6 @@ function tellGavy(message, email) {
 }
 $(document).ready(function () {
     configureName();
-    configureEvents();
     configureProjects();
     configureForm();
 });

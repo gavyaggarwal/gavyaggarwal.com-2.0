@@ -400,7 +400,7 @@ function tellGavy(message, email) {
 
 $(document).ready(function() {
   configureName();
-  configureEvents();
+  //configureEvents();
   configureProjects();
   configureForm();
   //configureScrolling();
