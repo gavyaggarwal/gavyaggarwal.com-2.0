@@ -1,5 +1,6 @@
 declare var ScrollMagic : any;
 declare var TweenMax : any;
+declare var TimelineMax : any;
 declare var $ : any;
 
 type EventType = "life" | "career" | "academic";
@@ -168,7 +169,6 @@ function configureScrolling() {
     top: -300
   });
 
-
   new ScrollMagic.Scene({
       offset: 150
     })
@@ -186,8 +186,8 @@ function configureScrolling() {
   var events = $("#timeline li");
   for (var i = 0; i < events.length; i++) {
     new ScrollMagic.Scene({
+        triggerHook: 0.4,
         triggerElement: events[i],
-        offset: -120,
         duration: 60
       })
       .setClassToggle(events[i], "selected")
@@ -195,58 +195,45 @@ function configureScrolling() {
   }
 
 
-  return
-
-
-
-
-
-
-  var projectsScrollIn = TweenMax.fromTo("#projects", 1,
-                    {top: "+=0"},
-                    {top: "-=200"}
-                  );
-
-  var projectsFadeIn = TweenMax.fromTo("#projects", 1,
-                    {opacity: 0},
-                    {opacity: 1}
-                  );
-
-  var projectsFadeOut = TweenMax.fromTo("#projects", 1,
-                    {opacity: 1},
-                    {opacity: 0}
-                  );
+  var projectIntro = new TimelineMax().add([
+    new TweenMax("#projects", 1, {
+      top: -300
+    }, 0),
+    new TweenMax("#projects", 1, {
+      opacity: 1
+    }, 0)
+	]);
 
   new ScrollMagic.Scene({
       triggerElement: "#timeline",
       offset: $("#timeline").outerHeight(),
       duration: 300
     })
-    .setTween(projectsScrollIn)
+    .setTween(projectIntro)
     .addTo(controller);
 
-  new ScrollMagic.Scene({
-      triggerElement: "#timeline",
-      offset: $("#timeline").outerHeight(),
-      duration: 300
-    })
-    .setTween(projectsFadeIn)
-    .addTo(controller);
-
+  var projectsOutro = new TimelineMax().add([
+    new TweenMax("#projects", 1, {
+      top: -500
+    }, 0),
+    new TweenMax("#projects", 1, {
+      opacity: 0
+    }, 0)
+	]);
 
   new ScrollMagic.Scene({
       triggerElement: "#skills",
       duration: 200
     })
-    .setTween(projectsFadeOut)
+    .setTween(projectsOutro)
     .addTo(controller);
 
 
-
-
-  var tags = $("#skills #tags span");
+  var skills = $("#skills");
+  var tags = $(skills).find("#tags span");
+  var tagsTweens = new TimelineMax();
   for (var i = 0; i < tags.length; i++) {
-    var tagFlyIn = TweenMax.fromTo(tags[i], 1,
+    tagsTweens.add(TweenMax.fromTo(tags[i], 1,
                       {
                         transform: "translateY(-1000px) rotate(-90deg)",
                         opacity: 0
@@ -255,70 +242,37 @@ function configureScrolling() {
                         transform: "translateY(100px) rotate(-90deg)",
                         opacity: 1
                       }
-                    );
-    new ScrollMagic.Scene({
-        triggerElement: "#skills",
-        offset: 300 + (tags.length - i - 1) * 10,
-        duration: 40
-      })
-      .setTween(tagFlyIn)
-      .addTo(controller);
+                    ));
   }
-
-  var legendFadeIn = TweenMax.fromTo("#legend", 1,
-                    {opacity: 0},
-                    {opacity: 1}
-                  );
-
-  var wheelWind = TweenMax.fromTo("#tags", 1,
-                    {transform: "rotate(0deg)"},
-                    {transform: "rotate(179.9deg)"}
-                  );
-
-  var wheelUnwind = TweenMax.fromTo("#tags", 1,
-                    {transform: "rotate(-179.9deg)"},
-                    {transform: "rotate(0deg)"}
-                  );
-
+  tagsTweens.add(TweenMax.fromTo("#legend", tags.length,
+    {opacity: 0},
+    {opacity: 1}
+  ), 0);
 
   new ScrollMagic.Scene({
       triggerElement: "#skills",
-      offset: 300,
-      duration: 100
+      offset: $(skills).height()/2,
+      duration: 200
     })
-    .setTween(legendFadeIn)
-    .addTo(controller);
-
-  new ScrollMagic.Scene({
-      triggerElement: "#skills",
-      offset: 300,
-      duration: 10 * tags.length + 30
-    })
-    .setTween(wheelWind)
+    .setTween(tagsTweens)
     .setPin("#skills")
     .addTo(controller);
 
+  var rotateWheel = new TweenMax("#tags", 1, {
+    rotation: 360,
+  });
+
   new ScrollMagic.Scene({
       triggerElement: "#skills",
-      offset: 330 + 10 * tags.length,
+      offset: $(skills).height()/2 + 200,
       duration: 600
     })
-    .setTween(wheelUnwind)
+    .setTween(rotateWheel)
     .setPin("#skills")
     .addTo(controller);
 
 
-
-
-
-
-
-  var skillsScrollOut = TweenMax.fromTo("#skills", 1,
-    {top: "+=0"},
-    {top: "-=200"}
-  );
-
-  var contactFadeIn = TweenMax.fromTo("#contact", 1,
+  var contactIntro =TweenMax.fromTo("#contact", 1,
     {opacity: 0},
     {opacity: 1}
   );
@@ -328,17 +282,7 @@ function configureScrolling() {
       duration: 200,
       triggerHook: "onEnter"
     })
-    .setTween(skillsScrollOut)
-    .addTo(controller);
-
-
-  new ScrollMagic.Scene({
-      triggerElement: "#contact",
-      offset: 200,
-      duration: 200,
-      triggerHook: "onEnter"
-    })
-    .setTween(contactFadeIn)
+    .setTween(contactIntro)
     .addTo(controller);
 }
 
