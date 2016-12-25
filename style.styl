@@ -28,7 +28,6 @@ body
     margin 0 auto
     opacity 1
     position relative
-    background green
   #name
     text-align center
     height 100%
@@ -48,7 +47,7 @@ body
         vertical-align bottom
         &.animate
           animation slide-out 0.4s linear
-          max-width 400px
+          max-width 100vw
         &.animated
           animation slide-in 0.4s linear
           max-width 0px
@@ -175,7 +174,7 @@ body
               content "Academic Event"
         &.selected
           &::before
-            transform scale(2)
+            transform scale(1.5)
           div.left
             padding-right 6.5px
           div.right

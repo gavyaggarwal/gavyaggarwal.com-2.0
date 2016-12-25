@@ -1,0 +1,292 @@
+// output:index.html, pretty:false
+doctype html
+html
+  head
+    title Gavy Aggarwal
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    link(rel='stylesheet', type='text/css', href='css/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Poppins:300,400', rel='stylesheet')
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js')
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js')
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js')
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.1/isotope.pkgd.min.js')
+    script(src='index.js')
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-89431222-1', 'auto');
+      ga('send', 'pageview');
+  body
+    #background
+    section#name
+      h1 Gavy Aggarwal 
+        span#title
+      span#navigation
+        | Just Scroll or 
+        span#jump
+          span(onclick='javascript:void(0)') Jump To
+          a(href='javascript:window.controller.scrollTo("#timeline", - $(window).height() * 0.4 - 300)') Timeline
+          a(href='javascript:window.controller.scrollTo("#projects", -300)') Projects
+          a(href='javascript:window.controller.scrollTo("#skills", 200 + ($(window).height() - Math.min($(window).width(), 600)) * 0.5)') Skills
+          a(href='javascript:window.controller.scrollTo("#contact", 0)') Contact
+    section#timeline
+      #page-timeline
+      #line
+        #track
+        ul
+          li.life
+            .left August 1996
+            .right
+              h4
+              h2 Out of the Womb
+              p I came out as a chubby, summer baby at the ripe, young age of 0. However, don't let looks deceive you. I was a devious child, and I hope the world was ready for me.
+          li.academic
+            .left August 2001
+            .right
+              h4
+              h2 Off to School
+              p With a pair of freshly sharpened pencils and a shiny, new eraser, I was off to Kindergarten to learn all the wonderful things school had to offer. Unfortunately, the only thing I learned that day was that American school lunches were far from what I imagined.
+          li.life
+            .left June 2002
+            .right
+              h4
+              h2 Look Ma! No Training Wheels
+              p After several screams, crashes, and scraped knees, I finally earned my wheels. I could now be where I wanted, when I wanted and had to report to nobody... At least until I was tired and hungry after biking all day and needed to come home for dinner.
+          li.career
+            .left January 2006
+            .right
+              h4
+              h2 First Business Venture
+              p I started my business in my 4th grade classroom, making and selling paper fortune-tellers to other students. Unfortunately, I didn't pay my (nonexistent) lawyers enough because my teacher was able to shut down my operations in just a few weeks.
+          li.academic
+            .left June 2006
+            .right
+              h4
+              h2 Graduated from Thurgood Marshall Elementary School
+              p With my elementary school diploma in hand, I was off to change the world. I put my juice box down and set off to be an astronaut and make my 9-year-old dream a reality.
+          li.life
+            .left December 2007
+            .right
+              h4
+              h2 My First Laptop
+              p I planned on using my first computer for school, but I ended up playing more flash games on it than I'd like to admit. Luckily, Netflix was not around back then or my productivity would have dropped even further. However, this laptop really sparked my interest in computers and led me to study computer science. Thanks Mom and Dad!
+          li.academic
+            .left June 2010
+            .right
+              h4
+              h2 Graduated from Newark Charter Middle School
+              p Wow! A middle school diploma! I must be really accomplished by now. Not only did I survive elementary school, but now I also had 4 years of middle school under my belt. I wasn't ready to stop now, and I braced myself for high school...
+          li.career
+            .left Summer 2012
+            .right
+              h4
+              h2 Intern at the University of Delaware
+              p As part of the K-12 Engineering Internship program, I worked in the Electrical Engineering Department of the University of Delaware under Professor Xiaoming Li. I did low-level programming for microchips on robots for applications that included following a line and moving towards a wireless access point.
+          li.career
+            .left Summer 2014
+            .right
+              h4
+              h2 iOS Developer at dyli
+              p I developed the front-end of dyli, a fashion app that matches users to designers, brands, and boutiques based on their personal tastes. This was my first real industry experience and I learned a lot about analytics, UI design, and developer collaboration.
+    section#projects
+      h2 My Projects
+      #subheader
+        span#filter
+          a(data-tag='ios') iOS
+          a(data-tag='android') Android
+          a(data-tag='web') Web
+          a(data-tag='backend') Backend
+        span#count 14 Projects
+      #grid
+        .android.backend
+          img(src='img/project1.png')
+          h3 Friendathlon
+          p
+            | A next-generation fitness app that puts you head to head with all your friends by creating leaderboards for walking, running, and cycling activity
+          a(href='https://devpost.com/software/friendathlon', target='_blank') Devpost
+          a(href='https://github.com/gavyaggarwal/Friendathlon', target='_blank') Github
+        .ios
+          img(src='img/project2.png')
+          h3 Connect
+          p
+            | An award-winning app that allows users to connect with people they meet on various social media platforms at once and share contact information simultaneously
+          a(href='https://devpost.com/software/connect-0jifq5', target='_blank') Devpost
+          a(href='https://trnqlchallenge.devpost.com/submissions', target='_blank') trnql Award
+        .web.backend
+          img(src='img/project3.png')
+          h3 USDA Reduced Lunch Form
+          p
+            | An award-winning web form created for the USDA that enables low-income parents to enroll their children for reduced price school lunches
+          a(href='https://devpost.com/software/usda-eat-ux-form', target='_blank') Devpost
+          a(href='https://lunchux.devpost.com/submissions', target='_blank') USDA Award
+        .ios.backend
+          img(src='img/project4.jpg')
+          h3 Help App for Disaster Relief
+          p
+            | An award-winning disaster recovery app that crowdsources water, food, shelter, and medical and police assistance for those in need after a natural disaster
+          a(href='https://devpost.com/software/help-jy4a39', target='_blank') Devpost
+          a(href='https://bluemixathon.devpost.com/submissions', target='_blank') IBM Award
+        .ios
+          img(src='img/project5.png')
+          h3 Find Mecca
+          p
+            | An award-winning app inspired by my history class that helps Muslims face Mecca to pray by using the compass, GPS, and accelerometer (13k downloads)
+          a(href='https://itunes.apple.com/app/id771229494', target='_blank') iTunes
+          a(href='https://devpost.com/software/find-mecca-for-ios-7', target='_blank') Devpost
+        .ios.web
+          img(src='img/project6.png')
+          h3 Remote Music
+          p
+            | A proof-of-concept that runs a webserver on an iOS device and allows users to connect to the server from a web browser and stream music stored on the device
+          a(href='https://itunes.apple.com/app/id687568996', target='_blank') iTunes
+          a(href='https://github.com/gavyaggarwal/Remote-Music', target='_blank') Github
+        .android.ios
+          img(src='img/project7.png')
+          h3 PassProtect Manager
+          p
+            | A cross-platform password manager that encrypts all your logins and snaps pictures of the user accessing them (over 36k free and 3k paid downloads)
+          a(href='https://play.google.com/store/apps/details?id=co.passprotect', target='_blank') Google Play
+          a(href='https://itunes.apple.com/us/app/id906481898', target='_blank') iTunes
+        .backend
+          img(src='img/project8.jpg')
+          h3 cuda MapReduce
+          p
+            | An implementation of MapReduce that runs on Nvidia GPUs and uses several GPU programming techniques to optimize parallel performance
+          a(href='https://github.com/gavyaggarwal/GPU-MapReduce', target='_blank') Github
+        .ios
+          img(src='img/project9.png')
+          h3 iTransfer
+          p
+            | A bluetooth ad-hoc file transfer app built in the early days of iOS but was rendered obsolete by AirDrop (over 500k downloads, $44k revenue)
+          a(href='https://github.com/gavyaggarwal/iTransfer', target='_blank') Github
+        .web
+          img(src='img/project10.png')
+          h3 gavyaggarwal.com
+          p
+            | The previous version of my personal website which detailed some of my projects and skills but became defuct when this version rolled out
+          a(href='https://github.com/gavyaggarwal/gavyaggarwal.com', target='_blank') Github
+    section#skills
+      #legend
+        h3 My Skills
+        h5
+          .patch(style='background: rgb(255, 87, 34);')
+          | Front End
+        h5
+          .patch(style='background: rgb(76, 175, 80);')
+          | Back End
+        h5
+          .patch(style='background: rgb(3, 169, 244);')
+          | Mobile End
+        h5
+          .patch(style='background: rgb(156, 39, 176);')
+          | Development
+      #tags
+        div
+          span HTML5
+        div
+          span Jade
+        div
+          span CSS3
+        div
+          span JavaScript
+        div
+          span CoffeeScript
+        div
+          span TypeScript
+        div
+          span LESS
+        div
+          span Stylus
+        div
+          span React
+        div
+          span Materialize
+        div
+          span jQuery
+        div
+          span ScrollMagic
+        div
+          span Formspree
+        div
+          span node.js
+        div
+          span Python
+        div
+          span OCaml
+        div
+          span C++
+        div
+          span PHP
+        div
+          span Bash
+        div
+          span PowerShell
+        div
+          span Electron
+        div
+          span MySQL
+        div
+          span MongoDB
+        div
+          span Parse
+        div
+          span Amazon AWS
+        div
+          span OpenShift
+        div
+          span Heroku
+        div
+          span Android
+        div
+          span Java
+        div
+          span iOS
+        div
+          span Objective C
+        div
+          span Swift
+        div
+          span Windows Phone
+        div
+          span C#
+        div
+          span React Native
+        div
+          span Appcelerator Titanium
+        div
+          span PhoneGap
+        div
+          span Mobile Web
+        div
+          span Atom
+        div
+          span Visual Studio Code
+        div
+          span Android Studio
+        div
+          span Xcode
+        div
+          span Adobe Photoshop
+        div
+          span Wireshark
+        div
+          span Security
+        div
+          span Design
+        div
+          span Animation
+        div
+          span Analytics
+    section#contact
+      #form
+        span Send a Message
+      a(href='http://fb.com/gavyaggarwal')
+        img(src='img/facebook.png')
+      a(href='http://linkedin.com/in/gavyaggarwal')
+        img(src='img/linkedin.png')
+      a(href='http://github.com/gavyaggarwal')
+        img(src='img/github.png')
+      span#footer Thanks for visiting. Come again soon.

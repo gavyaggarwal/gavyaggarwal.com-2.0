@@ -1,14 +1,5 @@
 var events2;
 events2 = [
-    ["August 1996", "life", "Out of the Womb", "I came out as a chubby, summer baby at the ripe, young age of 0. However, don't let looks deceive you. I was a devious child, and I hope the world was ready for me."],
-    ["August 2001", "academic", "Off to School", "With a pair of freshly sharpened pencils and a shiny, new eraser, I was off to Kindergarten to learn all the wonderful things school had to offer. Unfortunately, the only thing I learned that day was that American school lunches were far from what I imagined."],
-    ["June 2002", "life", "Look Ma! No Training Wheels", "After several screams, crashes, and scraped knees, I finally earned my wheels. I could now be where I wanted, when I wanted and had to report to nobody... At least until I was tired and hungry after biking all day and needed to come home for dinner."],
-    ["January 2006", "career", "First Business Venture", "I started my business in my 4th grade classroom, making and selling paper fortune-tellers to other students. Unfortunately, I didn't pay my (nonexistent) lawyers enough because my teacher was able to shut down my operations in just a few weeks."],
-    ["June 2006", "academic", "Graduated from Thurgood Marshall Elementary School", "With my elementary school diploma in hand, I was off to change the world. I put my juice box down and set off to be an astronaut and make my 9-year-old dream a reality."],
-    ["December 2007", "life", "My First Laptop", "I planned on using my first computer for school, but I ended up playing more flash games on it than I'd like to admit. Luckily, Netflix was not around back then or my productivity would have dropped even further. However, this laptop really sparked my interest in computers and led me to study computer science. Thanks Mom and Dad!"],
-    ["June 2010", "academic", "Graduated from Newark Charter Middle School", "Wow! A middle school diploma! I must be really accomplished by now. Not only did I survive elementary school, but now I also had 4 years of middle school under my belt. I wasn't ready to stop now, and I braced myself for high school..."],
-    ["Summer 2012", "career", "Intern at the University of Delaware", "As part of the K-12 Engineering Internship program, I worked in the Electrical Engineering Department of the University of Delaware under Professor Xiaoming Li. I did low-level programming for microchips on robots for applications that included following a line and moving towards a wireless access point."],
-    ["Summer 2014", "career", "iOS Developer at dyli", "I developed the front-end of dyli, a fashion app that matches users to designers, brands, and boutiques based on their personal tastes. This was my first real industry experience and I learned a lot about analytics, UI design, and developer collaboration."],
     ["September 2014", "academic", "Matriculated at the California Institute of Technology", "Those past four years at the Charter School of Wilmington flew by fast. So did that Boeing 767. I left behind my home in Delaware and hauled all my belongings to California, so I could commit myself to four more years of education at Caltech."],
     ["Summer 2015", "career", "Engineering Practicum Intern at Google", "I worked on Google's Ad Team to design an app category mapping system that was used in serving ads and implement a mobile app ad format. I had an awesome summer in Mountain View and learned lots of new technologies including protobuffers, BigTable, and Google's proprietary rendering language."],
     ["April 2016", "life", "Competed in 3Red's Poker Night", "After picking up poker in my downtime, I won an online poker tournament and was flown to Chicago for a poker tournament. I had the opportunity to meet players who've played in the World Series and hear their stories of being career poker players."],
@@ -118,13 +109,11 @@ function configureForm() {
         });
     });
 }
-function scrollToEvent() {
-    this.controller.scrollTo(this.scene);
-}
 function configureScrolling() {
     var controller = new ScrollMagic.Controller();
-    controller.scrollTo(function (newScrollPos) {
-        $("html, body").animate({ scrollTop: newScrollPos });
+    window.controller = controller;
+    controller.scrollTo(function (newScrollPos, offset) {
+        $("html, body").animate({ scrollTop: newScrollPos + offset });
     });
     var nameFade = new TweenMax("#name", 1, {
         opacity: 0
