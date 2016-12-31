@@ -1,22 +1,9 @@
 declare var ScrollMagic : any;
 declare var TweenMax : any;
 declare var TimelineMax : any;
-declare var window : any;
 declare var $ : any;
 
-type EventType = "life" | "career" | "academic";
-type PersonalEvent = [string, EventType, string, string];
-
-let events2: [PersonalEvent];
-
-events2 = [
-  ["September 2014", "academic", "Matriculated at the California Institute of Technology", "Those past four years at the Charter School of Wilmington flew by fast. So did that Boeing 767. I left behind my home in Delaware and hauled all my belongings to California, so I could commit myself to four more years of education at Caltech."],
-  ["Summer 2015", "career", "Engineering Practicum Intern at Google", "I worked on Google's Ad Team to design an app category mapping system that was used in serving ads and implement a mobile app ad format. I had an awesome summer in Mountain View and learned lots of new technologies including protobuffers, BigTable, and Google's proprietary rendering language."],
-  ["April 2016", "life", "Competed in 3Red's Poker Night", "After picking up poker in my downtime, I won an online poker tournament and was flown to Chicago for a poker tournament. I had the opportunity to meet players who've played in the World Series and hear their stories of being career poker players."],
-  ["Summer 2016", "career", "Program Manager Intern at Microsoft", "I developed the functional specification and UI mockups for a feedback feature in Microsoft Dynamics AX. As part of the job, I worked with the legal, UX, content, and engineering teams in order to bring this feature to fruition. I also performed code reviews and created technical prototypes."],
-  ["Fall 2016", "academic", "A Long Way from Home", "I spent the term at Cambridge University at Corpus Christi College as part of an exchange program. Living in England was quite different from life in the states, but I adjusted well and joined the rowing team and massage society while abroad."],
-  ["The Future", "life", "A Crazy Adventure", "Who knows what the future will bring. I'm really open to anything and my only preference is that I keep doing cool stuff. Come back soon to see where life takes me."]
-];
+type Page = "name" | "timeline" | "projects" | "skills" | "contact";
 
 function configureName() : void {
   var title = $("#title");
@@ -29,17 +16,6 @@ function configureName() : void {
       i = (i + 1) % 4;
     }, 600)
   }, 5000);
-}
-
-function getEventTypeString(type : EventType) : string {
-  switch (type) {
-    case "life":
-      return "Life Event"
-    case "career":
-      return "Career Event"
-    case "academic":
-      return "Academic Event"
-  }
 }
 
 function configureProjects() : void {
@@ -138,7 +114,7 @@ function configureForm() : void {
 
 function configureScrolling() {
   var controller = new ScrollMagic.Controller();
-  window.controller = controller;
+  window["controller"] = controller;
 
   controller.scrollTo(function (newScrollPos, offset) {
     $("html, body").animate({scrollTop: newScrollPos + offset});
@@ -255,7 +231,7 @@ function configureScrolling() {
   new ScrollMagic.Scene({
       triggerElement: "#skills",
       offset: $(skills).height()/2 + 200,
-      duration: 600
+      duration: 1800
     })
     .setTween(rotateWheel)
     .setPin("#skills")
@@ -276,6 +252,31 @@ function configureScrolling() {
     .addTo(controller);
 }
 
+function configureNavigation() {
+  var page : Page = window.location.hash.replace("#", "")
+  scrollToPage(page);
+}
+
+function scrollToPage(page : Page) : string {
+  switch (page) {
+    case "name":
+      window["controller"].scrollTo("#name", 0);
+      return;
+    case "timeline":
+      window["controller"].scrollTo("#timeline", - $(window).height() * 0.4 - 300);
+      return;
+    case "projects":
+      window["controller"].scrollTo("#projects", -300);
+      return;
+    case "skills":
+      window["controller"].scrollTo("#skills", 200 + (-$(window).height() + $("#skills").height()) * 0.5);
+      return;
+    case "contact":
+      window["controller"].scrollTo("#contact", 0);
+      return;
+  }
+}
+
 console.log(`Hey there. What brings you with to the console? Are you having issues with my website. You can send me a message by typing tellGavy("[Your message]") and hitting enter. Alternatively, you can include your email by using tellGavy([message]", "[email]") so that I can get back to you.`);
 
 function tellGavy(message, email) {
@@ -293,8 +294,17 @@ function tellGavy(message, email) {
 
 $(document).ready(function() {
   configureName();
-  //configureEvents();
   configureProjects();
   configureForm();
   configureScrolling();
+  configureNavigation();
 });
+
+window['GoogleAnalyticsObject'] = 'ga';
+window['ga'] = window['ga'] || function() {
+  (window['ga'].q = window['ga'].q || []).push(arguments);
+};
+window['ga'].l = (1 * new Date());
+
+ga('create', 'UA-89431222-1', 'auto');
+ga('send', 'pageview');

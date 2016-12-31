@@ -12,13 +12,7 @@ html
     script(src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js')
     script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.1/isotope.pkgd.min.js')
     script(src='index.js')
-    script.
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-89431222-1', 'auto');
-      ga('send', 'pageview');
+    script(src='analytics.js', async)
   body
     #background
     section#name
@@ -28,10 +22,10 @@ html
         | Just Scroll or 
         span#jump
           span(onclick='javascript:void(0)') Jump To
-          a(href='javascript:window.controller.scrollTo("#timeline", - $(window).height() * 0.4 - 300)') Timeline
-          a(href='javascript:window.controller.scrollTo("#projects", -300)') Projects
-          a(href='javascript:window.controller.scrollTo("#skills", 200 + ($(window).height() - Math.min($(window).width(), 600)) * 0.5)') Skills
-          a(href='javascript:window.controller.scrollTo("#contact", 0)') Contact
+          a(href='javascript:scrollToPage("timeline")') Timeline
+          a(href='javascript:scrollToPage("projects")') Projects
+          a(href='javascript:scrollToPage("skills")') Skills
+          a(href='javascript:scrollToPage("contact")') Contact
     section#timeline
       #page-timeline
       #line
@@ -91,6 +85,42 @@ html
               h4
               h2 iOS Developer at dyli
               p I developed the front-end of dyli, a fashion app that matches users to designers, brands, and boutiques based on their personal tastes. This was my first real industry experience and I learned a lot about analytics, UI design, and developer collaboration.
+          li.academic
+            .left September 2014
+            .right
+              h4
+              h2 Matriculated at the California Institute of Technology
+              p Those past four years at the Charter School of Wilmington flew by fast. So did that Boeing 767. I left behind my home in Delaware and hauled all my belongings to California, so I could commit myself to four more years of education at Caltech.
+          li.career
+            .left Summer 2015
+            .right
+              h4
+              h2 Engineering Practicum Intern at Google
+              p I worked on Google's Ad Team to design an app category mapping system that was used in serving ads and implement a mobile app ad format. I had an awesome summer in Mountain View and learned lots of new technologies including protobuffers, BigTable, and Google's proprietary rendering language.
+          li.life
+            .left April 2016
+            .right
+              h4
+              h2 Competed in 3Red's Poker Night
+              p After picking up poker in my downtime, I won an online poker tournament and was flown to Chicago for a poker tournament. I had the opportunity to meet players who've played in the World Series and hear their stories of being career poker players.
+          li.career
+            .left Summer 2016
+            .right
+              h4
+              h2 Program Manager Intern at Microsoft
+              p I developed the functional specification and UI mockups for a feedback feature in Microsoft Dynamics AX. As part of the job, I worked with the legal, UX, content, and engineering teams in order to bring this feature to fruition. I also performed code reviews and created technical prototypes.
+          li.academic
+            .left Fall 2016
+            .right
+              h4
+              h2 A Long Way from Home
+              p I spent the term at Cambridge University at Corpus Christi College as part of an exchange program. Living in England was quite different from life in the states, but I adjusted well and joined the rowing team and massage society while abroad.
+          li.life
+            .left The Future
+            .right
+              h4
+              h2 A Crazy Adventure
+              p Who knows what the future will bring. I'm really open to anything and my only preference is that I keep doing cool stuff. Come back soon to see where life takes me.
     section#projects
       h2 My Projects
       #subheader
