@@ -306,5 +306,5 @@ window['ga'] = window['ga'] || function() {
 };
 window['ga'].l = (1 * new Date());
 
-ga('create', 'UA-89431222-1', 'auto');
+ga('create', 'UA-89431222-2', 'auto');
 ga('send', 'pageview');
